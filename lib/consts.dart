@@ -23,10 +23,24 @@ const MaterialColor primaryColorMaterial = MaterialColor(
 const String fontFamily = "Rubik";
 
 // AppBar
-const String websiteTitle = "Levy's Books Rating";
+const String websiteTitle = "Ran's Books Rating";
 const String appbarTitleFont = "Rubik";
 const FontWeight appbarTitleFontWeight = FontWeight.bold;
 double paddingSearchAndTile (double width) {return width/15;}
-double widthOfSearchBox (double width) {return width/3;}
+double widthOfSearchBoxLargeNavBar (double width) {return width/2.5;}
+const double widthOfSearchBoxSmallNavBar = 320;
 const double heightOfSearchBox = 40;
-const double heightOfAppbar = 85;
+const double heightOfLargeAppbar = 90;
+const double heightOfSmallAppbar = 120;
+
+// BookCard
+const EdgeInsets cardDefaultPadding = EdgeInsets.all(10);
+double widthOfCard(double width) {return width/2.2;}
+const double heightOfCard = 400;
+const double cardBorderRadius = 15;
+const double cardRowHeight = 350;
+const double cardImageWidth = 220;
+const double cardTitleHeight = 45;
+const double cardSubTitleHeight = 20;
+const double cardDataHeight = 200;
+const double cardDataWidth = 335;

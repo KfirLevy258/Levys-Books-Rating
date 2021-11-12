@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
 import 'consts.dart';
+import 'layout_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: primaryColorMaterial,
         fontFamily: fontFamily,
       ),
-      home: HomeScreen(),
+      home: const LayoutScreen(),
     );
   }
 }

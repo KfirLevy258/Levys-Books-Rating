@@ -63,7 +63,14 @@ flutter:
     - assets/books/murderclub_Master.jpeg
     - assets/books/profigal_son.jpeg
 
-#     - images/a_dot_ham.jpeg
+    - assets/rating/1.png
+    - assets/rating/2.png
+    - assets/rating/3.png
+    - assets/rating/4.png
+    - assets/rating/5.png
+
+
+  #     - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

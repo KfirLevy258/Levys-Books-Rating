@@ -33,14 +33,38 @@ const double heightOfSearchBox = 40;
 const double heightOfLargeAppbar = 90;
 const double heightOfSmallAppbar = 120;
 
-// BookCard
+// BookCardGeneral
 const EdgeInsets cardDefaultPadding = EdgeInsets.all(10);
-double widthOfCard(double width) {return width/2.2;}
-const double heightOfCard = 400;
 const double cardBorderRadius = 15;
-const double cardRowHeight = 350;
-const double cardImageWidth = 220;
-const double cardTitleHeight = 45;
-const double cardSubTitleHeight = 20;
-const double cardDataHeight = 200;
-const double cardDataWidth = 335;
+const double ratingCircleSizeDefault = 50;
+double ratingCirclePaddingFromLeft(double width, int rating) {return (width / 5) * (rating - 1) + (width / (ratingCircleSizeDefault / 2));} // Return the padding value from the left side of the rating bar
+double ratingCircleSize(double width, Function cardDataWidth) {return cardDataWidth(width)/8;} // Return the size of the RatingCircle in ratio the screen size
+double ratingCirclePaddingFromTop(double width, Function ratingCircleSize, Function cardDataWidth) {return (ratingCircleSizeDefault - ratingCircleSize(width, cardDataWidth))/2.25;} // Return the padding value from the top side of the rating bar
+
+// BookCard LargeScreen
+double widthOfCardLargeScreen(double width) {return width/2.2;}
+const double heightOfCardLargeScreen = 410;
+const double cardRowHeightLargeScreen = 350;
+double cardImageWidthLargeScreen(double width) {return 230;}
+double cardTitleHeightLargeScreen(double width) {return cardDataWidthLargeScreen(width)/8.5;}
+// const double cardTitleHeightLargeScreen = 45; // TODO: change to be adaptive
+const double cardSubTitleHeightLargeScreen = 20; // TODO: change to be adaptive
+const double cardDataHeightLargeScreen = 200;
+double cardDataWidthLargeScreen(double width) {return widthOfCardLargeScreen(width) - cardImageWidthLargeScreen(width) - 80;}
+
+// BookCard SmallScreen
+double widthOfCardSmallScreen(double width) {return width > 750 ? 600 : width-(width/5);}
+const double heightOfCardSmallScreen = 300;
+const double cardRowHeightSmallScreen = 250;
+double cardImageWidthSmallScreen(double width) {return 165;}
+double cardTitleHeightSmallScreen(double width) {return cardDataWidthSmallScreen(width)/10;}
+const double cardSubTitleHeightSmallScreen = 18; // TODO: change to be adaptive
+const double cardDataHeightSmallScreen = 100;
+double cardDataWidthSmallScreen(double width) {return widthOfCardSmallScreen(width) - cardImageWidthSmallScreen(width) - 80;}
+
+const double verticalPadding = 20;
+const double horizontalPadding = 40;
+
+const double ratingScaleHeight = 10;
+
+const double smallScreenMinSize = 1150;

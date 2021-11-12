@@ -1,23 +1,6 @@
 import 'package:flutter/material.dart';
 import 'consts.dart';
 
-class NavBar extends StatelessWidget {
-  const NavBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth > 900) {
-          return LargeNavBar();
-        } else {
-          return SmallNavBar();
-        }
-      },
-    );
-  }
-}
-
 class LargeNavBar extends StatelessWidget {
   LargeNavBar({ Key? key }) : super(key: key);
 
@@ -27,9 +10,10 @@ class LargeNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+      padding: const EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding),
       child: Container(
-        constraints: const BoxConstraints(maxWidth: 2000, maxHeight: heightOfLargeAppbar),
+          color: Theme.of(context).primaryColor,
+          constraints: const BoxConstraints(maxWidth: 10000, maxHeight: heightOfLargeAppbar),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -51,10 +35,10 @@ class SmallNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+      padding: const EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding),
       child: Container(
-        width: MediaQuery. of(context). size. width,
-        constraints: const BoxConstraints(maxWidth: 1000, maxHeight: heightOfSmallAppbar),
+        constraints: const BoxConstraints(maxWidth: smallScreenMinSize, maxHeight: heightOfSmallAppbar),
+        color: Theme.of(context).primaryColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -79,7 +63,7 @@ Widget titleAppbar() {
       websiteTitle,
       style: TextStyle(
           fontWeight: appbarTitleFontWeight,
-          fontSize: 35,
+          fontSize: 35, // TODO: change to const
           color: Colors.white
       ),
       textAlign: TextAlign.right,
@@ -114,7 +98,7 @@ Widget searchBox(BuildContext context, TextEditingController _searchController, 
               _searchController.clear();
             },
           ),
-          hintText: 'Search book name',
+          hintText: 'Search book name', // TODO: Change to const
           border: InputBorder.none,
         ),
       ),
@@ -133,10 +117,10 @@ Widget actionButtons(BuildContext context) {
           color: Theme.of(context).dialogBackgroundColor,
         ),
         onPressed: () {
-          print("I need helppppp!");
+          print("I need helppppp!"); // TODO: make a help
         },
         onLongPress: () {
-          print("Lol");
+          print("Lol"); // TODO: make admin screen
         },
       ),
     ],

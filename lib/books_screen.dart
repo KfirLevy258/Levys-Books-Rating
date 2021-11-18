@@ -21,7 +21,7 @@ class LargeNBooksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery. of(context). size. width,
-      height: 650, // TODO: change this to actual height
+      height: MediaQuery. of(context). size. height - heightOfLargeAppbar,
       child: ListView(
         children: [
           Padding(
@@ -35,13 +35,13 @@ class LargeNBooksScreen extends StatelessWidget {
                     BookCard(largeScreen: true, book: b2,),
                   ],
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     BookCard(),
-                //     BookCard(),
-                //   ],
-                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    BookCard(largeScreen: true, book: b1,),
+                    BookCard(largeScreen: true, book: b2,),
+                  ],
+                ),
               ],
             ),
           )
@@ -58,7 +58,7 @@ class SmallBooksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery. of(context). size. width,
-      height: 570, // TODO: change this to actual height
+      height: MediaQuery. of(context). size. height - heightOfSmallAppbar - 2 * verticalPadding,
       child: ListView(
         children: [
           Padding(

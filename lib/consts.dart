@@ -31,18 +31,19 @@ double paddingSearchAndTile (double width) {return width/15;}
 double widthOfSearchBoxLargeNavBar (double width) {return width/2.5;}
 const double widthOfSearchBoxSmallNavBar = 320;
 const double heightOfSearchBox = 40;
-const double heightOfLargeAppbar = 90;
+const double heightOfLargeAppbar = 85;
 const double heightOfSmallAppbar = 120;
 
 // BookCardGeneral
 const EdgeInsets cardDefaultPadding = EdgeInsets.all(10);
 const double cardBorderRadius = 15;
 const double ratingCircleSizeDefault = 50;
-const double bookDataFontSize = 12;
+const double bookDataFontSize = 13;
 double ratingCirclePaddingFromLeft(double width, int rating) {return (width / 5) * (rating - 1) + (width / (ratingCircleSizeDefault / 2));} // Return the padding value from the left side of the rating bar
 double ratingCircleSize(double width, Function cardDataWidth) {return cardDataWidth(width)/8;} // Return the size of the RatingCircle in ratio the screen size
 double ratingCirclePaddingFromTop(double width, Function ratingCircleSize, Function cardDataWidth) {return (ratingCircleSizeDefault - ratingCircleSize(width, cardDataWidth))/2.25;} // Return the padding value from the top side of the rating bar
 const double cardRatingScalePadding = 20;
+const double defaultElevation = 10;
 
 // BookCard LargeScreen
 double widthOfCardLargeScreen(double width) {return width/2.2;}

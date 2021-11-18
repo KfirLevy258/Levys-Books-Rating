@@ -38,26 +38,26 @@ class _BookCardState extends State<BookCard> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Padding(padding: cardDefaultPadding),
-            bookDataInCard(CrossAxisAlignment.end, TextAlign.right, context),
+            bookDataInCard(CrossAxisAlignment.end, TextDirection.rtl, context),
             const Padding(padding: cardDefaultPadding),
             bookImageInCard(context),
           ],
         ),
-        elevation: 10, // TODO: make consts
+        elevation: defaultElevation,
       ) : Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(cardBorderRadius),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Padding(padding: cardDefaultPadding),
             bookImageInCard(context),
             const Padding(padding: cardDefaultPadding),
-            bookDataInCard(CrossAxisAlignment.start, TextAlign.left, context)
+            bookDataInCard(CrossAxisAlignment.start, TextDirection.ltr, context),
+            const Padding(padding: cardDefaultPadding),
           ],
         ),
-        elevation: 10,
+        elevation: defaultElevation,
       );
   }
 
@@ -70,12 +70,11 @@ class _BookCardState extends State<BookCard> {
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage(widget.book.image), fit: BoxFit.fitWidth),
         borderRadius: BorderRadius.circular(cardBorderRadius),
-        color: Colors.red
       ),
     );
   }
 
-  Widget bookDataInCard(CrossAxisAlignment alignment, TextAlign textAlignment, BuildContext context) {
+  Widget bookDataInCard(CrossAxisAlignment alignment, TextDirection direction, BuildContext context) {
     double width = MediaQuery. of(context). size. width;
     return SizedBox(
       width: widget.largeScreen ? cardDataWidthLargeScreen(width) : cardDataWidthSmallScreen(width),
@@ -87,7 +86,7 @@ class _BookCardState extends State<BookCard> {
           SizedBox(
             height: widget.largeScreen ? cardTitleHeightLargeScreen(width) : cardTitleHeightSmallScreen(width),
             child: FittedBox(
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.fitWidth,
               child: Text(
                 widget.book.title,
                 style: const TextStyle(fontWeight: FontWeight.bold),
@@ -97,23 +96,26 @@ class _BookCardState extends State<BookCard> {
           SizedBox(
             height: widget.largeScreen ? cardSubTitleHeightLargeScreen(width) : cardSubTitleHeightSmallScreen(width),
             child: FittedBox(
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.fitWidth,
               child: Text(
                 widget.book.author + " - " + widget.book.year,
               ),
             ),
           ),
           const Padding(padding: cardDefaultPadding),
-          SizedBox(
-            height: widget.largeScreen ? cardDataHeightLargeScreen : cardDataHeightSmallScreen,
-            child: ListView(
-              children: [
-                Text(
-                    widget.book.bookData,
-                    style: const TextStyle(fontSize: bookDataFontSize,),
-                    textAlign: textAlignment
-                ),
-              ],
+          Directionality(
+            textDirection: direction,
+            child: SizedBox(
+              height: widget.largeScreen ? cardDataHeightLargeScreen : cardDataHeightSmallScreen,
+              child: ListView(
+                children: [
+                  Text(
+                      widget.book.bookData,
+                      style: const TextStyle(fontSize: bookDataFontSize,),
+                      textAlign: TextAlign.justify
+                  ),
+                ],
+              ),
             ),
           ),
           const Padding(padding: cardDefaultPadding),
@@ -160,7 +162,6 @@ class _BookCardState extends State<BookCard> {
                   widget.largeScreen
                    ? Padding(padding: EdgeInsets.fromLTRB(0, ratingCirclePaddingFromTop(width, ratingCircleSize, cardDataWidthLargeScreen), 0, 0))
                    : Padding(padding: EdgeInsets.fromLTRB(0, ratingCirclePaddingFromTop(width, ratingCircleSize, cardDataWidthSmallScreen), 0, 0)),
-
                   Row(
                     children: [
                       Padding(padding: EdgeInsets.only(left: ratingCirclePaddingFromLeft(widget.largeScreen ? cardDataWidthLargeScreen(width) : cardDataWidthSmallScreen(width), widget.book.rating))),
@@ -170,6 +171,7 @@ class _BookCardState extends State<BookCard> {
                         decoration: BoxDecoration(
                           // color: Colors.lightBlue,
                           shape: BoxShape.circle,
+                          // TODO: once there is database, inser image from web
                           image: DecorationImage(image: AssetImage("rating/" + (widget.book.rating).toString() + ".png"), fit: BoxFit.fill)
                         ),
                       ),

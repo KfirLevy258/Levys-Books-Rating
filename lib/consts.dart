@@ -24,6 +24,7 @@ const String fontFamily = "Rubik";
 
 // AppBar
 const String websiteTitle = "Ran's Books Rating";
+const double websiteTitleFontSize = 35;
 const String appbarTitleFont = "Rubik";
 const FontWeight appbarTitleFontWeight = FontWeight.bold;
 double paddingSearchAndTile (double width) {return width/15;}
@@ -37,9 +38,11 @@ const double heightOfSmallAppbar = 120;
 const EdgeInsets cardDefaultPadding = EdgeInsets.all(10);
 const double cardBorderRadius = 15;
 const double ratingCircleSizeDefault = 50;
+const double bookDataFontSize = 12;
 double ratingCirclePaddingFromLeft(double width, int rating) {return (width / 5) * (rating - 1) + (width / (ratingCircleSizeDefault / 2));} // Return the padding value from the left side of the rating bar
 double ratingCircleSize(double width, Function cardDataWidth) {return cardDataWidth(width)/8;} // Return the size of the RatingCircle in ratio the screen size
 double ratingCirclePaddingFromTop(double width, Function ratingCircleSize, Function cardDataWidth) {return (ratingCircleSizeDefault - ratingCircleSize(width, cardDataWidth))/2.25;} // Return the padding value from the top side of the rating bar
+const double cardRatingScalePadding = 20;
 
 // BookCard LargeScreen
 double widthOfCardLargeScreen(double width) {return width/2.2;}
@@ -47,8 +50,7 @@ const double heightOfCardLargeScreen = 410;
 const double cardRowHeightLargeScreen = 350;
 double cardImageWidthLargeScreen(double width) {return 230;}
 double cardTitleHeightLargeScreen(double width) {return cardDataWidthLargeScreen(width)/8.5;}
-// const double cardTitleHeightLargeScreen = 45; // TODO: change to be adaptive
-const double cardSubTitleHeightLargeScreen = 20; // TODO: change to be adaptive
+double cardSubTitleHeightLargeScreen(double width) {return cardDataWidthLargeScreen(width)/15;}
 const double cardDataHeightLargeScreen = 200;
 double cardDataWidthLargeScreen(double width) {return widthOfCardLargeScreen(width) - cardImageWidthLargeScreen(width) - 80;}
 
@@ -58,7 +60,7 @@ const double heightOfCardSmallScreen = 300;
 const double cardRowHeightSmallScreen = 250;
 double cardImageWidthSmallScreen(double width) {return 165;}
 double cardTitleHeightSmallScreen(double width) {return cardDataWidthSmallScreen(width)/10;}
-const double cardSubTitleHeightSmallScreen = 18; // TODO: change to be adaptive
+double cardSubTitleHeightSmallScreen(double width) {return cardDataWidthSmallScreen(width)/15;}
 const double cardDataHeightSmallScreen = 100;
 double cardDataWidthSmallScreen(double width) {return widthOfCardSmallScreen(width) - cardImageWidthSmallScreen(width) - 80;}
 
@@ -68,3 +70,7 @@ const double horizontalPadding = 40;
 const double ratingScaleHeight = 10;
 
 const double smallScreenMinSize = 1150;
+
+// HelpDialog
+double helpDialogWidth(double width) {return width/2.5;}
+double helpDialogHeight(double height) {return height/1.2;}

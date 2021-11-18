@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'consts.dart';
+import 'help_dialog.dart';
 
 class LargeNavBar extends StatelessWidget {
   LargeNavBar({ Key? key }) : super(key: key);
@@ -63,7 +64,7 @@ Widget titleAppbar() {
       websiteTitle,
       style: TextStyle(
           fontWeight: appbarTitleFontWeight,
-          fontSize: 35, // TODO: change to const
+          fontSize: websiteTitleFontSize,
           color: Colors.white
       ),
       textAlign: TextAlign.right,
@@ -98,7 +99,7 @@ Widget searchBox(BuildContext context, TextEditingController _searchController, 
               _searchController.clear();
             },
           ),
-          hintText: 'Search book name', // TODO: Change to const
+          hintText: 'Search book name',
           border: InputBorder.none,
         ),
       ),
@@ -118,6 +119,12 @@ Widget actionButtons(BuildContext context) {
         ),
         onPressed: () {
           print("I need helppppp!"); // TODO: make a help
+          showDialog(
+            context: context,
+            builder: (_) {
+              return const HelpDialog();
+            },
+          );
         },
         onLongPress: () {
           print("Lol"); // TODO: make admin screen

@@ -95,7 +95,7 @@ class _BookCardState extends State<BookCard> {
             ),
           ),
           SizedBox(
-            height: widget.largeScreen ? cardSubTitleHeightLargeScreen : cardSubTitleHeightSmallScreen,
+            height: widget.largeScreen ? cardSubTitleHeightLargeScreen(width) : cardSubTitleHeightSmallScreen(width),
             child: FittedBox(
               fit: BoxFit.fitHeight,
               child: Text(
@@ -110,7 +110,7 @@ class _BookCardState extends State<BookCard> {
               children: [
                 Text(
                     widget.book.bookData,
-                    style: const TextStyle(fontSize: 12,), // TODO: make const
+                    style: const TextStyle(fontSize: bookDataFontSize,),
                     textAlign: textAlignment
                 ),
               ],
@@ -121,7 +121,7 @@ class _BookCardState extends State<BookCard> {
             children: [
               Column(
                 children: [
-                  const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)), // TODO: make const
+                  const Padding(padding: EdgeInsets.fromLTRB(0, cardRatingScalePadding, 0, 0)),
                   SizedBox(
                     height: ratingScaleHeight,
                     child: Row(
@@ -150,7 +150,7 @@ class _BookCardState extends State<BookCard> {
                       ],
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)), // TODO: make const
+                  const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, cardRatingScalePadding)),
                 ],
               ),
 
@@ -158,8 +158,8 @@ class _BookCardState extends State<BookCard> {
               Column(
                 children: [
                   widget.largeScreen
-                   ? Padding(padding: EdgeInsets.fromLTRB(0, ratingCirclePaddingFromTop(width, ratingCircleSize, cardDataWidthLargeScreen), 0, 0)) // TODO: make const
-                   : Padding(padding: EdgeInsets.fromLTRB(0, ratingCirclePaddingFromTop(width, ratingCircleSize, cardDataWidthSmallScreen), 0, 0)), // TODO: make const
+                   ? Padding(padding: EdgeInsets.fromLTRB(0, ratingCirclePaddingFromTop(width, ratingCircleSize, cardDataWidthLargeScreen), 0, 0))
+                   : Padding(padding: EdgeInsets.fromLTRB(0, ratingCirclePaddingFromTop(width, ratingCircleSize, cardDataWidthSmallScreen), 0, 0)),
 
                   Row(
                     children: [
@@ -170,7 +170,7 @@ class _BookCardState extends State<BookCard> {
                         decoration: BoxDecoration(
                           // color: Colors.lightBlue,
                           shape: BoxShape.circle,
-                          image: DecorationImage(image: AssetImage("rating/" + (widget.book.rating).toString() + ".png"), fit: BoxFit.fill) // TODO: make const
+                          image: DecorationImage(image: AssetImage("rating/" + (widget.book.rating).toString() + ".png"), fit: BoxFit.fill)
                         ),
                       ),
                     ],

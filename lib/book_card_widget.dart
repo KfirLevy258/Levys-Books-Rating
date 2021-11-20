@@ -20,7 +20,7 @@ class _BookCardState extends State<BookCard> {
 
   Widget bookCardBuild(BuildContext context) {
     return Container(
-        padding: cardDefaultPadding,
+        padding: defaultPadding,
         height: widget.largeScreen ? heightOfCardLargeScreen : heightOfCardSmallScreen,
         width: widget.largeScreen ? widthOfCardLargeScreen(MediaQuery. of(context). size. width) : widthOfCardSmallScreen(MediaQuery. of(context). size. width),
         child: buildCard(context)
@@ -37,9 +37,9 @@ class _BookCardState extends State<BookCard> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Padding(padding: cardDefaultPadding),
+            const Padding(padding: defaultPadding),
             bookDataInCard(CrossAxisAlignment.end, TextDirection.rtl, context),
-            const Padding(padding: cardDefaultPadding),
+            const Padding(padding: defaultPadding),
             bookImageInCard(context),
           ],
         ),
@@ -52,9 +52,9 @@ class _BookCardState extends State<BookCard> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             bookImageInCard(context),
-            const Padding(padding: cardDefaultPadding),
+            const Padding(padding: defaultPadding),
             bookDataInCard(CrossAxisAlignment.start, TextDirection.ltr, context),
-            const Padding(padding: cardDefaultPadding),
+            const Padding(padding: defaultPadding),
           ],
         ),
         elevation: defaultElevation,
@@ -82,12 +82,12 @@ class _BookCardState extends State<BookCard> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: alignment,
         children: [
-          const Padding(padding: cardDefaultPadding),
+          const Padding(padding: defaultPadding),
           SizedBox(
             height: widget.largeScreen ? cardTitleHeightLargeScreen(width) : cardTitleHeightSmallScreen(width),
             child: FittedBox(
               fit: BoxFit.fitWidth,
-              child: Text(
+              child: SelectableText(
                 widget.book.title,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -97,19 +97,19 @@ class _BookCardState extends State<BookCard> {
             height: widget.largeScreen ? cardSubTitleHeightLargeScreen(width) : cardSubTitleHeightSmallScreen(width),
             child: FittedBox(
               fit: BoxFit.fitWidth,
-              child: Text(
+              child: SelectableText(
                 widget.book.author + " - " + widget.book.year,
               ),
             ),
           ),
-          const Padding(padding: cardDefaultPadding),
+          const Padding(padding: defaultPadding),
           Directionality(
             textDirection: direction,
             child: SizedBox(
               height: widget.largeScreen ? cardDataHeightLargeScreen : cardDataHeightSmallScreen,
               child: ListView(
                 children: [
-                  Text(
+                  SelectableText(
                       widget.book.bookData,
                       style: const TextStyle(fontSize: bookDataFontSize,),
                       textAlign: TextAlign.justify
@@ -118,7 +118,7 @@ class _BookCardState extends State<BookCard> {
               ),
             ),
           ),
-          const Padding(padding: cardDefaultPadding),
+          const Padding(padding: defaultPadding),
           Stack(
             children: [
               Column(
@@ -137,7 +137,7 @@ class _BookCardState extends State<BookCard> {
                             ),
                           ),
                         )),
-                        Expanded(child: Container(color: Colors.redAccent,)),
+                        Expanded(child: Container(color: Colors.orange,)),
                         Expanded(child: Container(color: Colors.yellowAccent,)),
                         Expanded(child: Container(color: Colors.greenAccent,)),
                         Expanded(child: Container(
@@ -172,7 +172,7 @@ class _BookCardState extends State<BookCard> {
                           // color: Colors.lightBlue,
                           shape: BoxShape.circle,
                           // TODO: once there is database, inser image from web
-                          image: DecorationImage(image: AssetImage("rating/" + (widget.book.rating).toString() + ".png"), fit: BoxFit.fill)
+                          image: DecorationImage(image: AssetImage(tempGetImageAsset((widget.book.rating).toString())), fit: BoxFit.fill)
                         ),
                       ),
                     ],

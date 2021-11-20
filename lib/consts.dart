@@ -21,57 +21,61 @@ const MaterialColor primaryColorMaterial = MaterialColor(
 
 // General
 const String fontFamily = "Rubik";
+const double verticalPadding = 20;
+const double horizontalPadding = 40;
+const double smallScreenMinSize = 1150;
+const double defaultElevation = 10;
+String tempGetImageAsset(String rating) {return "rating/" + rating + ".png";}
+
 
 // AppBar
 const String websiteTitle = "Ran's Books Rating";
 const double websiteTitleFontSize = 35;
-const String appbarTitleFont = "Rubik";
-const FontWeight appbarTitleFontWeight = FontWeight.bold;
-double paddingSearchAndTile (double width) {return width/15;}
-double widthOfSearchBoxLargeNavBar (double width) {return width/2.5;}
 const double widthOfSearchBoxSmallNavBar = 320;
 const double heightOfSearchBox = 40;
 const double heightOfLargeAppbar = 85;
 const double heightOfSmallAppbar = 120;
+const FontWeight appbarTitleFontWeight = FontWeight.bold;
+const EdgeInsets defaultPadding = EdgeInsets.all(10);
+double paddingSearchAndTile (double width) {return width/15;}
+double widthOfSearchBoxLargeNavBar (double width) {return width/2.5;}
 
 // BookCardGeneral
-const EdgeInsets cardDefaultPadding = EdgeInsets.all(10);
 const double cardBorderRadius = 15;
 const double ratingCircleSizeDefault = 50;
 const double bookDataFontSize = 13;
+const double cardRatingScalePadding = 20;
+const double ratingScaleHeight = 10;
 double ratingCirclePaddingFromLeft(double width, int rating) {return (width / 5) * (rating - 1) + (width / (ratingCircleSizeDefault / 2));} // Return the padding value from the left side of the rating bar
 double ratingCircleSize(double width, Function cardDataWidth) {return cardDataWidth(width)/8;} // Return the size of the RatingCircle in ratio the screen size
 double ratingCirclePaddingFromTop(double width, Function ratingCircleSize, Function cardDataWidth) {return (ratingCircleSizeDefault - ratingCircleSize(width, cardDataWidth))/2.25;} // Return the padding value from the top side of the rating bar
-const double cardRatingScalePadding = 20;
-const double defaultElevation = 10;
 
 // BookCard LargeScreen
-double widthOfCardLargeScreen(double width) {return width/2.2;}
 const double heightOfCardLargeScreen = 410;
 const double cardRowHeightLargeScreen = 350;
+const double cardDataHeightLargeScreen = 200;
+double widthOfCardLargeScreen(double width) {return width/2.2;}
 double cardImageWidthLargeScreen(double width) {return 230;}
 double cardTitleHeightLargeScreen(double width) {return cardDataWidthLargeScreen(width)/8.5;}
 double cardSubTitleHeightLargeScreen(double width) {return cardDataWidthLargeScreen(width)/15;}
-const double cardDataHeightLargeScreen = 200;
 double cardDataWidthLargeScreen(double width) {return widthOfCardLargeScreen(width) - cardImageWidthLargeScreen(width) - 80;}
 
 // BookCard SmallScreen
-double widthOfCardSmallScreen(double width) {return width > 750 ? 600 : width-(width/5);}
 const double heightOfCardSmallScreen = 300;
 const double cardRowHeightSmallScreen = 250;
+const double cardDataHeightSmallScreen = 100;
+double widthOfCardSmallScreen(double width) {return width > 750 ? 600 : width-(width/5);}
 double cardImageWidthSmallScreen(double width) {return 165;}
 double cardTitleHeightSmallScreen(double width) {return cardDataWidthSmallScreen(width)/10;}
 double cardSubTitleHeightSmallScreen(double width) {return cardDataWidthSmallScreen(width)/15;}
-const double cardDataHeightSmallScreen = 100;
 double cardDataWidthSmallScreen(double width) {return widthOfCardSmallScreen(width) - cardImageWidthSmallScreen(width) - 80;}
 
-const double verticalPadding = 20;
-const double horizontalPadding = 40;
-
-const double ratingScaleHeight = 10;
-
-const double smallScreenMinSize = 1150;
-
 // HelpDialog
+const String helpDialogTitle = "About Our\nRating System";
+const double helpDialogBorderRadiusSize = 30;
+const double helpDialogTitleSize = 40;
+const double helpDialogDefaultLineHeight = 3;
+const double helpDialogPaddingFromSideBigLine = 2;
+const double helpDialogPaddingFromSideSmallLine = 5;
 double helpDialogWidth(double width) {return width/2.5;}
-double helpDialogHeight(double height) {return height/1.2;}
+double helpDialogHeight(double height) {return height;}

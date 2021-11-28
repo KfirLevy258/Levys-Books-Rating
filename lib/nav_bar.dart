@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'consts.dart';
 import 'help_dialog.dart';
+import 'dart:html' as html;
 
 class LargeNavBar extends StatelessWidget {
   LargeNavBar({ Key? key }) : super(key: key);
@@ -70,7 +71,7 @@ Widget titleAppbar() {
       textAlign: TextAlign.right,
     ),
     onPressed: () {
-
+      html.window.location.reload();
     },
   );
 }
@@ -118,7 +119,6 @@ Widget actionButtons(BuildContext context) {
           color: Theme.of(context).dialogBackgroundColor,
         ),
         onPressed: () {
-          print("I need helppppp!"); // TODO: make a help
           showDialog(
             context: context,
             builder: (_) {

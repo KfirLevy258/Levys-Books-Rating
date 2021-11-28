@@ -71,11 +71,22 @@ double cardSubTitleHeightSmallScreen(double width) {return cardDataWidthSmallScr
 double cardDataWidthSmallScreen(double width) {return widthOfCardSmallScreen(width) - cardImageWidthSmallScreen(width) - 80;}
 
 // HelpDialog
-const String helpDialogTitle = "About Our\nRating System";
+const String helpDialogTitle = "About Our Rating System";
+const String helpDialogButtonText = "OK";
 const double helpDialogBorderRadiusSize = 30;
 const double helpDialogTitleSize = 40;
 const double helpDialogDefaultLineHeight = 3;
 const double helpDialogPaddingFromSideBigLine = 2;
 const double helpDialogPaddingFromSideSmallLine = 5;
+const double helpDialogPaddingFromLines = 7.5;
+const double helpDialogButtonWidth = 100;
+const double helpDialogButtonSize = 20;
+const double helpDialogRatingWidgetHeight = 70;
+const double helpDialogRatingWidgetWidth = 500;
+const double helpDialogCirclePadding = 22;
+const double helpDialogCircleSize = 70;
+const double helpDialogTextHeight = 60;
+const double helpDialogTextSize = 12;
 double helpDialogWidth(double width) {return width/2.5;}
+double helpDialogTextWidth(double width) {return helpDialogWidth(width) - 200;}
 double helpDialogHeight(double height) {return height;}

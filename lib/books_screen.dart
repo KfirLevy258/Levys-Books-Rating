@@ -50,29 +50,3 @@ class LargeNBooksScreen extends StatelessWidget {
     );
   }
 }
-
-class SmallBooksScreen extends StatelessWidget {
-  const SmallBooksScreen({ Key? key }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery. of(context). size. width,
-      height: MediaQuery. of(context). size. height - heightOfSmallAppbar - 2 * verticalPadding,
-      child: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                BookCard(largeScreen: false, book: b1,),
-                BookCard(largeScreen: false, book: b2,),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}

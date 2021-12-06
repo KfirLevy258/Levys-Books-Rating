@@ -110,5 +110,22 @@
       loadMainDartJs();
     }
   </script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script>
+     var firebaseConfig = {
+      apiKey: "AIzaSyCB8go62KdcIAFl79gmPjExGwUkp8nfV4s",
+      authDomain: "levys-books-rating.firebaseapp.com",
+      projectId: "levys-books-rating",
+      storageBucket: "levys-books-rating.appspot.com",
+      messagingSenderId: "372345313856",
+      appId: "1:372345313856:web:a8ed46f5a909f65a895da5",
+      measurementId: "G-DVPBS18NSC"
+    };
+
+     // Initialize Firebase
+     firebase.initializeApp(firebaseConfig);
+    </script>
 </body>
 </html>

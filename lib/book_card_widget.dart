@@ -68,7 +68,11 @@ class _BookCardState extends State<BookCard> {
       width: widget.largeScreen ? cardImageWidthLargeScreen(width) : cardImageWidthSmallScreen(width),
       // padding: cardDefaultPadding,
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(widget.book.image), fit: BoxFit.fitWidth),
+        color: Theme.of(context).primaryColor,
+        image: DecorationImage(
+          fit: BoxFit.fitWidth,
+          image: NetworkImage(widget.book.image)
+        ),
         borderRadius: BorderRadius.circular(cardBorderRadius),
       ),
     );
@@ -169,7 +173,6 @@ class _BookCardState extends State<BookCard> {
                         width: widget.largeScreen ? ratingCircleSize(width, cardDataWidthLargeScreen) : ratingCircleSize(width, cardDataWidthSmallScreen),
                         height: widget.largeScreen ? ratingCircleSize(width, cardDataWidthLargeScreen) : ratingCircleSize(width, cardDataWidthSmallScreen),
                         decoration: BoxDecoration(
-                          // color: Colors.lightBlue,
                           shape: BoxShape.circle,
                           // TODO: once there is database, inser image from web
                           image: DecorationImage(image: AssetImage(tempGetImageAsset((widget.book.rating).toString())), fit: BoxFit.fill)

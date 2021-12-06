@@ -25,6 +25,8 @@ const double verticalPadding = 20;
 const double horizontalPadding = 40;
 const double smallScreenMinSize = 1150;
 const double defaultElevation = 10;
+const int maxBooksInRow = 2;
+const int numberOfRandomBooks = 2;
 String tempGetImageAsset(String rating) {return "rating/" + rating + ".png";}
 
 

@@ -21,7 +21,7 @@ class _LargeScreenState extends State<LargeScreen> {
   @override
   void initState() {
     screenParams = ScreenParams(
-      getAllBooks(), // TODO: Get only 10 random books
+        getRandomBooks(numberOfRandomBooks), // TODO: Get only 10 random books
       [loadingBooks()],
       true,
       TextEditingController(),

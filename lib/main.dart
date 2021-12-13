@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'consts.dart';
 import 'database_handling.dart';
+import 'error_page_404.dart';
 import 'layout_screen.dart';
 
 void main() {
@@ -28,8 +29,7 @@ class MyApp extends StatelessWidget {
         future: _initialization,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            // TODO: add 404 page
-            print("Error");
+            return const ErrorPage404();
           }
           if (snapshot.connectionState == ConnectionState.done) {
             return const LayoutScreen();

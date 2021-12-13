@@ -26,7 +26,7 @@ const double horizontalPadding = 40;
 const double smallScreenMinSize = 1150;
 const double defaultElevation = 10;
 const int maxBooksInRow = 2;
-const int numberOfRandomBooks = 2;
+const int numberOfRandomBooks = 10;
 String tempGetImageAsset(String rating) {return "rating/" + rating + ".png";}
 
 
@@ -92,3 +92,15 @@ const double helpDialogTextSize = 12;
 double helpDialogWidth(double width) {return width/2.5;}
 double helpDialogTextWidth(double width) {return helpDialogWidth(width) - 200;}
 double helpDialogHeight(double height) {return height;}
+
+// AddBookScreen
+const String addBookTitle = "Manager log in";
+const String addBookUploadImageText = "Upload book image";
+const String addBookSubmitButtonTitle = "Submit";
+const EdgeInsets addBookPadding = EdgeInsets.all(7);
+double addBookWidgetsWidth(double width) {return width/5;}
+
+// FormWidgets
+const double formWidgetsTitleSize = 24;
+const EdgeInsets formWidgetsPadding = EdgeInsets.all(5);
+

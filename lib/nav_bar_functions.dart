@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:levys_books_rating/book_card_class.dart';
 import 'package:levys_books_rating/screen_params.dart';
+import 'add_book_screen.dart';
 import 'consts.dart';
 import 'database_handling.dart';
 import 'help_dialog.dart';
@@ -91,9 +93,24 @@ Widget actionButtons(BuildContext context) {
           );
         },
         onLongPress: () {
+          // Navigator.push(context, AddBookScreen());
           print("Lol"); // TODO: make admin screen
         },
       ),
+      MaterialButton(
+        shape: const CircleBorder(),
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).dialogBackgroundColor,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddBookScreen()),
+          );
+          // addBookToDatabase(BookCardClass("kk", "kfir levy", "2022", "kkkkk", "url", "Hebrew", 3));
+        },
+      )
     ],
   );
 }

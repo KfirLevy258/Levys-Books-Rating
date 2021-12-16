@@ -110,7 +110,7 @@ class _BookCardState extends State<BookCard> {
           Directionality(
             textDirection: direction,
             child: SizedBox(
-              height: widget.largeScreen ? cardDataHeightLargeScreen : cardDataHeightSmallScreen,
+              height: widget.largeScreen ? cardDataHeightLargeScreen(width) : cardDataHeightSmallScreen,
               child: ListView(
                 children: [
                   SelectableText(
@@ -159,8 +159,6 @@ class _BookCardState extends State<BookCard> {
                   const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, cardRatingScalePadding)),
                 ],
               ),
-
-
               Column(
                 children: [
                   widget.largeScreen
@@ -174,7 +172,6 @@ class _BookCardState extends State<BookCard> {
                         height: widget.largeScreen ? ratingCircleSize(width, cardDataWidthLargeScreen) : ratingCircleSize(width, cardDataWidthSmallScreen),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          // TODO: once there is database, insert image from web
                           image: DecorationImage(image: AssetImage(tempGetImageAsset((widget.book.rating).toString())), fit: BoxFit.fill)
                         ),
                       ),

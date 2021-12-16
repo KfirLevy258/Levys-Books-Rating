@@ -52,16 +52,16 @@ const double bookDataFontSize = 13;
 const double cardRatingScalePadding = 20;
 const double ratingScaleHeight = 10;
 double ratingCirclePaddingFromLeft(double width, int rating) {return (width / 5) * (rating - 1) + (width / (ratingCircleSizeDefault / 2));} // Return the padding value from the left side of the rating bar
-double ratingCircleSize(double width, Function cardDataWidth) {return cardDataWidth(width)/8;} // Return the size of the RatingCircle in ratio the screen size
+double ratingCircleSize(double width, Function cardDataWidth) {print(cardDataWidth(width)/8); return width > 1600 ? 45 : cardDataWidth(width)/8;} // Return the size of the RatingCircle in ratio the screen size
 double ratingCirclePaddingFromTop(double width, Function ratingCircleSize, Function cardDataWidth) {return (ratingCircleSizeDefault - ratingCircleSize(width, cardDataWidth))/2.25;} // Return the padding value from the top side of the rating bar
 
 // BookCard LargeScreen
 const double heightOfCardLargeScreen = 410;
 const double cardRowHeightLargeScreen = 350;
-const double cardDataHeightLargeScreen = 200;
+double cardDataHeightLargeScreen(double width) {return width > 1600 ? 175 : 200;}
 double widthOfCardLargeScreen(double width) {return width/2.2;}
 double cardImageWidthLargeScreen(double width) {return 230;}
-double cardTitleHeightLargeScreen(double width) {return cardDataWidthLargeScreen(width)/8.5;}
+double cardTitleHeightLargeScreen(double width) {return width > 1600 ? 40 : cardDataWidthLargeScreen(width)/8.5;}
 double cardSubTitleHeightLargeScreen(double width) {return cardDataWidthLargeScreen(width)/15;}
 double cardDataWidthLargeScreen(double width) {return widthOfCardLargeScreen(width) - cardImageWidthLargeScreen(width) - 80;}
 

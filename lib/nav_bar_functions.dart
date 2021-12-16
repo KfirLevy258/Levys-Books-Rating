@@ -92,23 +92,12 @@ Widget actionButtons(BuildContext context) {
           );
         },
         onLongPress: () {
-          // Navigator.push(context, AddBookScreen());
-          print("Lol"); // TODO: make admin screen
-        },
-      ),
-      MaterialButton(
-        shape: const CircleBorder(),
-        child: Icon(
-          Icons.add,
-          color: Theme.of(context).dialogBackgroundColor,
-        ),
-        onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const AddBookScreen()),
           );
         },
-      )
+      ),
     ],
   );
 }

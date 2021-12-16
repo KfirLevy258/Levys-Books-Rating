@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'consts.dart';
 
-// TODO: use consts
 class ErrorPage404 extends StatelessWidget{
   const ErrorPage404({ Key? key}) : super(key: key);
 
@@ -11,19 +10,19 @@ class ErrorPage404 extends StatelessWidget{
       appBar: AppBar(),
       body: ListView(
         children: [
-          Padding(padding: EdgeInsets.all(MediaQuery. of(context). size. height / 8)),
+          Padding(padding: EdgeInsets.all(getErrorPagePadding(MediaQuery. of(context). size. height))),
           const Center(
             child: Text(
-              "404 Error - Page not found",
+              bigTextErrorPage,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 60),
+              style: TextStyle(fontSize: bigTextSizeErrorPage),
             ),
           ),
           const Center(
             child: Text(
-              "Please try to reload this page. If the problem not solved,\n check your connection to the internet :)",
+              smallTextErrorPage,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: smallTextSizeErrorPage),
             ),
           ),
         ],

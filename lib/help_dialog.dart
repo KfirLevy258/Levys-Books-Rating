@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:levys_books_rating/rating_class.dart';
 import 'consts.dart';
+import 'database_handling.dart';
 
 class HelpDialog extends StatefulWidget {
 
@@ -11,14 +12,18 @@ class HelpDialog extends StatefulWidget {
 }
 
 class _HelpDialog extends State<HelpDialog> {
-  // TODO: Remove this
-  List<RatingClass> ratingList = [
-    new RatingClass(Colors.red, 1, "Don’t get any close to the book - impossible to finish. If you find yourself stuck with it alone on an island, you will probably rather play X-O with yourself in the sand."),
-    new RatingClass(Colors.orange, 2, "A book that takes a lot of effort and time to finish, you really need to put an effort to read it. A great gift for a person you hates."),
-    new RatingClass(Colors.yellow, 3, "A classic flight book, a good written book with characters that are easy to relate with. The time flies by without even noticing. Not a work of art but fun to read. Usually it has a not-particularly-surprising ending."),
-    new RatingClass(Colors.greenAccent, 4, "A good book, well worth the time to read. You should put time and energy to read this book. A book that could be given as a gift so that people will think good things of you."),
-    new RatingClass(Colors.green, 5, "An inspiring book. A book that the person before reading the book is not the same person after reading the book. A book worth writing that you read it in your resume. A book to quote lines from in your wedding."),
-  ];
+
+  List<RatingClass> ratingList = [];
+
+  @override
+  void initState() {
+    getSystemHelpData().then((value) {
+      setState(() {
+        ratingList = value;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

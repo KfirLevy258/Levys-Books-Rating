@@ -27,8 +27,11 @@ const double smallScreenMinSize = 1150;
 const double defaultElevation = 10;
 const int maxBooksInRow = 2;
 const int numberOfRandomBooks = 10;
-String tempGetImageAsset(String rating) {return "rating/" + rating + ".png";}
-
+const List<Color> ratingColors = [Colors.white, Colors.red, Colors.orange, Colors.yellow, Colors.greenAccent, Colors.green];
+String tempGetImageAsset(String rating) {return "assets/rating/" + rating + ".png";}
+String notFoundText = "Oops! We cant find the book you searching\nCheck that the book name is written correctly";
+double notFoundTextSizeLargeScreen = 40;
+double notFoundTextSizeSmallScreen = 30;
 
 // AppBar
 const String websiteTitle = "Ran's Books Rating";
@@ -104,3 +107,31 @@ double addBookWidgetsWidth(double width) {return width/5;}
 const double formWidgetsTitleSize = 24;
 const EdgeInsets formWidgetsPadding = EdgeInsets.all(5);
 
+// ErrorPage
+const double bigTextSizeErrorPage = 60;
+const double smallTextSizeErrorPage = 24;
+const String bigTextErrorPage = "404 Error - Page not found";
+const String smallTextErrorPage = "Please try to reload this page. If the problem not solved,\n check your connection to the internet :)";
+double getErrorPagePadding(double height) {return height / 8;}
+
+// LoadingBooks
+const String loadingFile = "assets/Loading.gif";
+const double loadingSize = 100;
+const EdgeInsets loadingPadding = EdgeInsets.all(120);
+
+// InfoDialog
+const double infoDialogWidth = 300;
+const double infoDialogHeight = 200;
+
+// Database
+const String databaseBooksCollection = "books";
+const String databaseAssetsCollection = "assets";
+const String databaseBookName = "name";
+const String databaseBookAuthor = "author";
+const String databaseBookYear = "publishing_year";
+const String databaseBookData = "book_data";
+const String databaseBookImage = "image";
+const String databaseBookLanguage = "language";
+const String databaseBookRating = "rating";
+const String databaseAssetsImage = "image";
+const String databaseAssetsText = "text";

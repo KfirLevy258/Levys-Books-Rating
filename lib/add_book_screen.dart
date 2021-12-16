@@ -112,26 +112,30 @@ class _AddBookScreenState extends State<AddBookScreen> {
           onPressed: () {
             // Validate returns true if the form is valid, otherwise false.
             if (_formKey.currentState!.validate() && imagePicker != null) {
-              // TODO: Send from here the real url
-              addBookToDatabase(
-                  BookCardClass(
+              uploadBookImageAndGetURL(imagePicker!.files.last).then((imageURL) {
+                showDialog(
+                  context: context,
+                  builder: (_) {
+                    return const InfoDialog(title: "Done!", message:  "The book saved to data base successfully!",);
+                  },
+                );
+                addBookToDatabase(
+                    BookCardClass(
                       _bookName.text,
                       _author.text,
                       _year.text,
                       _bookData.text,
-                      "",
+                      imageURL,
                       bookInHebrew ? "Hebrew" : "English",
-                      int.parse(_rating.text)),
-                  imagePicker!.files.last
-              );
-              cleanForm();
-              // TODO: use info and inform user that data uploaded
+                      int.parse(_rating.text)));
+                cleanForm();
+              });
             }
             else {
               showDialog(
                 context: context,
                 builder: (_) {
-                  return const FormAlert();
+                  return const InfoDialog(title: "Error", message:  "You need to fill all the fields!",);
                 },
               );
             }

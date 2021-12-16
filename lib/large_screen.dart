@@ -21,7 +21,7 @@ class _LargeScreenState extends State<LargeScreen> {
   @override
   void initState() {
     screenParams = ScreenParams(
-        getRandomBooks(numberOfRandomBooks), // TODO: Get only 10 random books
+        getRandomBooks(numberOfRandomBooks),
       [loadingBooks()],
       true,
       TextEditingController(),
@@ -84,6 +84,22 @@ class _LargeScreenState extends State<LargeScreen> {
     screenParams.listOfBooks.then((docs) {
       setState(() {
         screenParams.listOfBooksWidgets = [];
+        if (docs.isEmpty) {
+          screenParams.listOfBooksWidgets.add(
+              Column(
+                children: [
+                  const Padding(padding: loadingPadding),
+                  Text(
+                    notFoundText,
+                    style: TextStyle(
+                        fontSize: notFoundTextSizeLargeScreen
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              )
+          );
+        }
         for (int index = 0; index < docs.length; index = index + maxBooksInRow) {
           List<BookCard> booksInRow = [];
           for (int col = 0; col < maxBooksInRow; col++) {

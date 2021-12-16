@@ -174,7 +174,7 @@ class _BookCardState extends State<BookCard> {
                         height: widget.largeScreen ? ratingCircleSize(width, cardDataWidthLargeScreen) : ratingCircleSize(width, cardDataWidthSmallScreen),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          // TODO: once there is database, inser image from web
+                          // TODO: once there is database, insert image from web
                           image: DecorationImage(image: AssetImage(tempGetImageAsset((widget.book.rating).toString())), fit: BoxFit.fill)
                         ),
                       ),

@@ -22,6 +22,22 @@ class _SmallScreenState extends State<SmallScreen> {
     screenParams.listOfBooks.then((docs) {
       screenParams.listOfBooksWidgets = [];
       setState(() {
+        if (docs.isEmpty) {
+          screenParams.listOfBooksWidgets.add(
+              Column(
+                children: [
+                  const Padding(padding: loadingPadding),
+                  Text(
+                    notFoundText,
+                    style: TextStyle(
+                      fontSize: notFoundTextSizeSmallScreen
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              )
+          );
+        }
         for (int index=0; index<docs.length; index++) {
           screenParams.listOfBooksWidgets.add(BookCard(largeScreen: screenParams.largeScreen, book: docs[index]));
         }
@@ -32,7 +48,7 @@ class _SmallScreenState extends State<SmallScreen> {
   @override
   void initState() {
     screenParams = ScreenParams(
-      getAllBooks(), // TODO: Get only 10 random books
+      getRandomBooks(numberOfRandomBooks),
       [loadingBooks()],
       false,
       TextEditingController(),

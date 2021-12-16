@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:levys_books_rating/book_card_class.dart';
 import 'package:levys_books_rating/screen_params.dart';
 import 'add_book_screen.dart';
 import 'consts.dart';
@@ -16,7 +15,7 @@ Widget titleAppbar() {
           fontSize: websiteTitleFontSize,
           color: Colors.white
       ),
-      textAlign: TextAlign.right,
+      textAlign: TextAlign.center,
     ),
     onPressed: () {
       html.window.location.reload();
@@ -30,11 +29,11 @@ Row loadingBooks() {
     children: [
       Column(
         children: [
-          Padding(padding: EdgeInsets.all(120),),
+          const Padding(padding: loadingPadding),
           Image.asset(
-            "assets/Loading.gif",
-            height: 100.0,
-            width: 100.0,
+            loadingFile,
+            height: loadingSize,
+            width: loadingSize,
           )
         ],
       ),
@@ -106,9 +105,8 @@ Widget actionButtons(BuildContext context) {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddBookScreen()),
+            MaterialPageRoute(builder: (context) => const AddBookScreen()),
           );
-          // addBookToDatabase(BookCardClass("kk", "kfir levy", "2022", "kkkkk", "url", "Hebrew", 3));
         },
       )
     ],

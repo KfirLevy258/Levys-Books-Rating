@@ -1,28 +1,24 @@
-import 'dart:io';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:levys_books_rating/rating_class.dart';
 import 'book_card_class.dart';
 import 'consts.dart';
 
-// TODO: Usr consts for data base collections, documents, fields
-// TODO: Add to db the "about our system" text
-
 Future<List<BookCardClass>> getAllBooks() async {
   List<BookCardClass> listOfBooks = [];
-  return FirebaseFirestore.instance.collection("books").get().then((docs) {
+  return FirebaseFirestore.instance.collection(databaseBooksCollection).get().then((docs) {
     for (int index=0; index<docs.docs.length; index++) {
       listOfBooks.add(
           BookCardClass(
-              docs.docs[index]["name"],
-              docs.docs[index]["author"],
-              docs.docs[index]["publishing_year"],
-              docs.docs[index]["book_data"],
-              docs.docs[index]["image"],
-              docs.docs[index]["language"],
-              docs.docs[index]["rating"])
+              docs.docs[index][databaseBookName],
+              docs.docs[index][databaseBookAuthor],
+              docs.docs[index][databaseBookYear],
+              docs.docs[index][databaseBookData],
+              docs.docs[index][databaseBookImage],
+              docs.docs[index][databaseBookLanguage],
+              docs.docs[index][databaseBookRating])
       );
     }
     return listOfBooks;
@@ -31,7 +27,7 @@ Future<List<BookCardClass>> getAllBooks() async {
 
 Future<List<BookCardClass>> getRandomBooks(int numberOfRandomBooks) async {
   List<BookCardClass> listOfBooks = [];
-  return FirebaseFirestore.instance.collection("books").get().then((docs) {
+  return FirebaseFirestore.instance.collection(databaseBooksCollection).get().then((docs) {
     final _random = Random();
     List<int> randomIndexesList = [];
     for (int index = 0; index < numberOfRandomBooks; index++) {
@@ -48,13 +44,13 @@ Future<List<BookCardClass>> getRandomBooks(int numberOfRandomBooks) async {
     for (int index = 0; index < randomIndexesList.length; index++) {
       listOfBooks.add(
           BookCardClass(
-              docs.docs[randomIndexesList[index]]["name"],
-              docs.docs[randomIndexesList[index]]["author"],
-              docs.docs[randomIndexesList[index]]["publishing_year"],
-              docs.docs[randomIndexesList[index]]["book_data"],
-              docs.docs[randomIndexesList[index]]["image"],
-              docs.docs[randomIndexesList[index]]["language"],
-              docs.docs[randomIndexesList[index]]["rating"])
+              docs.docs[randomIndexesList[index]][databaseBookName],
+              docs.docs[randomIndexesList[index]][databaseBookAuthor],
+              docs.docs[randomIndexesList[index]][databaseBookYear],
+              docs.docs[randomIndexesList[index]][databaseBookData],
+              docs.docs[randomIndexesList[index]][databaseBookImage],
+              docs.docs[randomIndexesList[index]][databaseBookLanguage],
+              docs.docs[randomIndexesList[index]][databaseBookRating])
       );
     }
     return listOfBooks;
@@ -62,29 +58,39 @@ Future<List<BookCardClass>> getRandomBooks(int numberOfRandomBooks) async {
 }
 
 Future<List<BookCardClass>> getBooksByName(String name) async {
-  // TODO: search not all the name, part of it is good
   List<BookCardClass> listOfBooks = [];
-  return FirebaseFirestore.instance.collection("books").where("name", isEqualTo: name).get().then((doc) {
-    for (int index=0; index<doc.docs.length; index++) {
-      listOfBooks.add(
-          BookCardClass(
-              doc.docs[index]["name"],
-              doc.docs[index]["author"],
-              doc.docs[index]["publishing_year"],
-              doc.docs[index]["book_data"],
-              doc.docs[index]["image"],
-              doc.docs[index]["language"],
-              doc.docs[index]["rating"])
-      );
+  return getAllBooks().then((allBooks) {
+    for (int index=0; index<allBooks.length; index++) {
+      if (allBooks[index].title.toLowerCase().contains(name.toLowerCase()) ||
+          name.toLowerCase().contains(allBooks[index].title.toLowerCase())) {
+        listOfBooks.add(allBooks[index]);
+      }
     }
     return listOfBooks;
+  });
+}
+
+Future<List<RatingClass>> getSystemHelpData() async {
+  List<RatingClass> listOfRatings = [];
+  return FirebaseFirestore.instance.collection(databaseAssetsCollection).get().then((doc) {
+    for (int index=0; index<doc.docs.length; index++) {
+      listOfRatings.add(
+          RatingClass(
+            ratingColors[int.parse(doc.docs[index].id)],
+            doc.docs[index][databaseAssetsImage],
+            int.parse(doc.docs[index].id),
+            doc.docs[index][databaseAssetsText],
+          )
+      );
+    }
+    return listOfRatings;
   });
 }
 
 
 Future<String> uploadBookImageAndGetURL(PlatformFile file) async {
   try {
-    TaskSnapshot upload = await FirebaseStorage.instance.ref().child(file.name).putData(
+    TaskSnapshot upload = await FirebaseStorage.instance.ref("/books_images").child(file.name).putData(
         file.bytes!,
         SettableMetadata(contentType: 'image/${file.extension}')
     );
@@ -95,16 +101,16 @@ Future<String> uploadBookImageAndGetURL(PlatformFile file) async {
   }
 }
 
-void addBookToDatabase(BookCardClass bookCard, PlatformFile file) {
-  uploadBookImageAndGetURL(file).then((imageURL) {
-    FirebaseFirestore.instance.collection("books").add({
-      "name": bookCard.title,
-      "author": bookCard.author,
-      "publishing_year": bookCard.year,
-      "book_data": bookCard.bookData,
-      "image": imageURL,
-      "language": bookCard.language,
-      "rating": bookCard.rating
-    });
+void addBookToDatabase(BookCardClass bookCard) {
+  FirebaseFirestore.instance.collection(databaseBooksCollection).add({
+    databaseBookName: bookCard.title,
+    databaseBookAuthor: bookCard.author,
+    databaseBookYear: bookCard.year,
+    databaseBookData: bookCard.bookData,
+    databaseBookImage: bookCard.image,
+    databaseBookLanguage: bookCard.language,
+    databaseBookRating: bookCard.rating
   });
 }
+
+

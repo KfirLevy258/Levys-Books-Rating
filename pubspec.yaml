@@ -38,6 +38,8 @@ dependencies:
   cloud_firestore: ^3.1.0
   firebase_storage: ^10.2.1
   file_picker: ^4.2.7
+  google_sign_in: ^5.2.1
+  firebase_auth: ^3.3.3
 
 dev_dependencies:
   flutter_test:
@@ -63,11 +65,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/rating/1.png
-    - assets/rating/2.png
-    - assets/rating/3.png
-    - assets/rating/4.png
-    - assets/rating/5.png
+    - assets/rating/
 
     - assets/Loading.gif
 

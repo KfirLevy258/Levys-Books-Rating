@@ -10,3 +10,10 @@ class BookCardClass{
   BookCardClass(this.title, this.author, this.year, this.bookData, this.image, this.language, this.rating) {}
 
 }
+
+class SystemHelp {
+  String text;
+  String image;
+
+  SystemHelp(this.text, this.image) {}
+}
